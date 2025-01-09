@@ -1,0 +1,632 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {}
+
+.container {
+  width: 100vw;
+  height: fit-content;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+
+}
+
+.container.fullscreen {
+  overflow: hidden;
+}
+
+.div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  overflow: hidden;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.item {
+  width: 350px;
+  height: 450px;
+ background: linear-gradient(-20deg,rgb(209, 204, 192), white );
+ /* background: linear-gradient(135deg,rgb(223, 228, 234),rgb(116, 125, 140)); */
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  display: grid;
+  /* grid-template-columns: repeat(1, 1fr); */
+  /* grid-template-rows: repeat(4, 1fr); */
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: black;
+  box-shadow: 0px 0px 0px black;
+  transition: box-shadow 0.4s ease-in-out;
+}
+.div .item{
+  display: grid;
+  grid-template-rows: repeat(4,1fr);
+}
+.item .prod {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 105%;
+  height: 90%;
+  
+  filter: drop-shadow(0px 40px 20px );
+  rotate: 0deg;
+  transform: translateY(0%);
+  transition: transform, rotate 0.5s ease-in-out;
+
+
+}
+
+.item:hover {
+
+  transition: box-shadow 0.4s ease-in-out;
+  box-shadow: 1px 10px 15px black;
+}
+
+.container .div .item:hover .prod {
+  rotate: -20deg;
+  transform: translateY(-5%);
+  transition: transform, rotate 0.5s ease-in-out;
+
+
+
+}
+.item .fav  {
+  transition: all 0.5s ease-in-out ;
+  width: 40px;
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+  
+}
+
+
+
+.btn .addtocart:hover {
+  transition: box-shadow 0.4s ease-in-out;
+  box-shadow: 0px 0px 20px black;
+}
+
+.btn .addtocart {
+
+
+  padding: 10px 35px;
+  border-radius: 10px;
+  border: none;
+
+  cursor: pointer;
+  font-size: 19px;
+  color: white;
+  outline: none;
+  background-color: black;
+  transition: box-shadow 0.4s ease-in-out;
+ 
+}
+
+.header {
+  width: 100vw;
+  height: fit-content;
+  position: fixed;
+  z-index: 100;
+ background: linear-gradient(-20deg,rgb(209, 204, 192), white);
+  color: black;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+
+}
+.header .logo{
+  width:200px;
+  height: 100px;
+  display: flex;
+}
+.header .logo:nth-child(2){
+  width: 100px;
+}
+.header ul {
+  display: flex;
+  width: 85%;
+  justify-content: end;
+  gap: 20px;
+  list-style: none;
+  height: 100%;
+  align-items: center;
+}
+
+.header ul li {
+  cursor: pointer;
+  color: black;
+  font-size: 1.2rem;
+  padding: 5px;
+
+}
+
+.header ul li:nth-child(2) img {
+  width: 35px;
+ 
+}
+.header ul li:nth-child(3) img {
+  width: 30px;
+  
+  align-items: center;
+}
+
+
+
+.header ul li:hover:nth-child(2) {
+ 
+
+  background-color: rgb(177, 174, 167);
+border-radius: 50%;
+
+
+}
+.header ul li:hover:nth-child(3) {
+ 
+
+  background-color: rgb(177, 174, 167);
+border-radius: 50%;
+
+
+}
+.header ul li .search{
+  width: 190px;
+  height: 25px;
+ 
+ border-top-left-radius: 20px;
+ border-bottom-left-radius: 20px;
+ border-top-right-radius: 20px;
+ border-bottom-right-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 8px;
+  color:  rgb(132, 129, 122);
+  font-weight: 700;
+  font-family: "Poppins", serif;
+}
+
+.banner {
+  width: 100vw;
+  height: 100vh;
+
+  position: relative;
+ background: linear-gradient(-20deg,rgb(209, 204, 192), white);
+
+}
+
+.banner img {
+  width: 100%;
+}
+
+
+
+.content img {
+  position: absolute;
+  width: 40%;
+  right: 10%;
+  bottom: 30%;
+  rotate: -40deg;
+  transform: translateX(0px);
+  transition: transform 0.5s ease-in-out;
+  animation: banner 0.5s ease-in-out 1 forwards;
+  animation: name timing-function delay iteration-count direction fill-mode;
+
+}
+
+@keyframes banner {
+  from {
+    transform: translateX(400px);
+    transition: transform 0.5s ease-in-out;
+    filter: blur(5px);
+  }
+}
+
+.dot {
+  width: 500px;
+  height: 500px;
+ background: linear-gradient(80deg,rgb(209, 204, 192), white);
+  box-shadow: 1px 3px 10px black;
+  border-radius: 50%;
+  position: absolute;
+  right: 15%;
+  top: 30%;
+  transform: translateY(0px);
+  transition: transform 1s ease-in-out;
+  animation: roll 1s ease-in-out 1 forwards;
+}
+
+@keyframes roll {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+.details {
+  width: 650px;
+  position: absolute;
+
+  bottom: 30%;
+  left: 20%;
+  transform: translateX(-20%);
+
+  font-family: "Poppins", serif;
+  filter: blur(10px);
+  animation: blureffect 0.5s ease-in-out 1 forwards;
+}
+
+@keyframes blureffect {
+  to {
+    filter: blur(0px);
+    transition: blur 0.5s ease-in-out;
+  }
+
+}
+
+.details h4,
+.details h1,
+.details h3,
+.details p {
+  
+  transform: translateX(-250%);
+  transition: transform 0.5s ease-in-out;
+  animation: slideeffect 0.6s ease-in-out 1 forwards;
+  cursor: context-menu;
+}
+
+@keyframes slideeffect {
+  to {
+
+    filter: blur(0px);
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+  }
+
+}
+
+.details h4 {
+  font-size: 30px;
+  font-weight: 200;
+  margin-bottom: 5px;
+  width: 200px;
+  filter: blur(10px);
+  animation-delay: 0.7s;
+  color: black;
+}
+
+.details h1 {
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 600;
+  color: white;
+  background-color: black;
+  margin-bottom: 4px;
+  animation-delay: 0.8s;
+  filter: blur(10px);
+}
+
+.details h3 {
+  font-size: 40px;
+  font-weight: 200;
+  margin-bottom: 10px;
+  animation-delay: 1s;
+  filter: blur(10px);
+  color: black;
+  margin-right: 15%;
+}
+
+.details p {
+  font-size: 20px;
+  animation-delay: 1.5s;
+  filter: blur(10px);
+  color: black;
+}
+
+.details .detailsbtn {
+  background-color: black;
+
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 10px white(13, 110, 253, 0.8);
+
+  margin-top: 20px;
+  cursor: pointer;
+  filter: blur(10px);
+  transform: translateX(-350%);
+  transition: all 0.5s ease-in-out;
+  animation: slideeffect 0.5s ease-in-out 1 forwards;
+  animation-delay: 1.5s;
+}
+
+.details .detailsbtn:hover {
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 20px black;
+   
+
+}
+
+.productname {
+
+  text-align: center;
+margin-top: 20%;
+  font-size: 2rem;
+  font-family: "Merienda", serif;
+  text-transform: uppercase;
+  color: black;
+  cursor: context-menu;
+}
+
+.price {
+  text-align: center;
+  font-size: 1.5rem;
+  color: black;
+  cursor: context-menu;
+  font-family: "Merienda", serif;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-evenly;
+
+  font-family: "Poppins", serif;
+}
+
+.footer .logos .logo img {
+  width: 15px;
+  cursor: pointer;
+  padding: 2px;
+  border: 1px solid #ccc;
+  background-origin: content-box;
+  box-shadow: 0px 0px 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.footer .logos {
+  margin-left: 10%;
+  margin-top: 10rem;
+}
+
+.footer .logos h3 {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.logo {
+  display: flex;
+
+}
+
+.condition {
+  margin-left: 10rem;
+  margin-top: 10rem;
+  margin-bottom: 10%;
+}
+
+.condition ul {
+  list-style: none;
+
+}
+
+.condition ul li {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: black;
+}
+
+.condition ul li:hover {
+  color: rgb(132, 129, 122);
+  transition: color 0.1s ease-in-out;
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  cursor: context-menu;
+  font-family: "Poppins", serif;
+
+}
+
+.copyright .first {
+  margin-left: 25px;
+}
+
+.copyright .last {
+  margin-right: 25px;
+  color: white;
+}
+
+.f {
+  background: linear-gradient(-20deg,rgb(209, 204, 192), white);
+}
+
+.carts {
+  position: absolute;
+  width: 1150px;
+  min-height: 770px;
+ max-height: 1770px;
+  
+  z-index: 100;
+  right: 0;
+
+  top: 00px;
+  background: linear-gradient(-90deg,rgb(209, 204, 192), white); 
+  padding: 20px;
+  box-shadow: 1px 4px 40px black;
+
+  transform: translatex(200%);
+  transition: all 01s linear;
+  animation: cart 0.5s ease-in-out 1 forwards;
+  overflow: scroll;
+
+  border-radius: 20px;
+}
+.cart .listofcart h1 h2{
+  text-align: center;
+}
+
+.listofcart {
+  margin-top: 40px;
+ display: flex;
+ flex-direction: row;
+  justify-content: space-evenly;
+ 
+  cursor: context-menu;
+  color: black;
+  font-family: "Poppins", serif;
+  
+
+}
+
+
+@keyframes cart {
+  to {
+    transform: translatex(0);
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
+.carts .cartprod {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  
+ 
+  transform: translateY(-1000%);
+  transition:translateX  0.5s linear;
+  animation: cartimg 1s ease-in-out 1 forwards;
+  animation-delay: 0.6s;
+  filter: blur(20px);
+  cursor: pointer;
+}
+.listofcart .prodname,
+.prodprice{
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+
+
+/* .listofcart .delete{
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  
+} */
+
+@keyframes cartimg {
+  to {
+    filter: blur(0);
+    transform: translateY(0%);
+    transition: transform 0.5 ease-in;
+  }
+
+}
+
+.carts .cartprod:hover {
+
+  transform: translateX(20px);
+
+}
+
+@keyframes hover {
+  to {
+    transform: translateY(-10px);
+    transition: transform 0.5 ease-in;
+  }
+
+}
+.cartbtn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cartbtn button {
+  background-color: black;
+ 
+  justify-content: center;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 10px black;
+  
+  margin-top: 20px;
+  cursor: pointer;
+
+  animation-delay: 1.5s;
+}
+
+.carts button:hover {
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 0px 20px black;
+}
+
+.cartbtn button {
+  margin-left: 25px;
+}
+
+.cartbtn button:nth-child(1) {
+  margin-right: 55px;
+}
+
+
+
+
+
+.listofcart .remove {
+  text-transform: lowercase;
+  padding: 0px 20px;
+  
+  width: 100px;
+  margin-left: 20px;
+}
+.cartList{
+  background-color: black;
+  color: white;
+  position: absolute;
+  padding: 2px;
+  right: 8.8%;
+  border-radius: 50%;
+  top: 40%;
+  width: 9px;
+  
+}
