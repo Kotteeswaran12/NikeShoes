@@ -21,10 +21,12 @@ function App() {
   const [shoes, setShoes] = useState([])
   const [bannerimg, setBannerimg] = useState(null)
 
-
+  const [Hoverimg, setHoverimg] = useState({})
   const [cartItem, setCartItem] = useState([])
 
   const [viewCart, setViewCart] = useState(false)
+
+  const [Shoesimg, setShoesimg] = useState([])
 
   useEffect(() => {
     const fetchshoe = async () => {
@@ -32,6 +34,8 @@ function App() {
         let link = await axios.get("http://localhost:8080/products");
 
         setShoes(link.data);
+        // confirm.log(link.data.image)
+        // console.log(link.data)
       }
       catch (error) {
         console.log("unable to fetchShoes data" + error)
@@ -122,7 +126,6 @@ function App() {
   }
 
 
-
   return (
     <>
       <div className="header">
@@ -132,8 +135,8 @@ function App() {
         <ul>
 
           <li ><img src={searchicon} alt="" style={{
-            'width':'35px' , 'background-color':'rgb(209, 204, 192)' , 'padding': '3px' , 'borderRadius':'50%' , 'position':'absolute'
-          }}/><input type="text" className='search' placeholder='               Search' ></input></li>
+            'width': '35px', 'background-color': 'rgb(209, 204, 192)', 'padding': '3px', 'borderRadius': '50%', 'position': 'absolute'
+          }} /><input type="text" className='search' placeholder='               Search' ></input></li>
 
           <li onClick={() => setViewCart(true)}><img src={cartimg} /> {cartItem.length === 0 ? "" : <span className='cartList'>{cartItem.length}</span>}</li>
           <li><img src={favicon} alt="" className='fav' /></li>
@@ -172,19 +175,44 @@ function App() {
       <div className="offertext" >
         <h1 className="text" id='products'>Newly Arrieved </h1>
       </div>
+
       <div className={`container `}>
         <div className="div" >
 
           {
             shoes && shoes.map((shoes) => (
               <div className="item" key={shoes.id} >
-                <img src={shoes.image} alt={shoes.name} className='prod' />
-                <div className="productname" style={{ 'color': 'black', 'fontWeight': '700' }}>{shoes.name}</div>
-                <div className="price" style={{ 'color': 'black', 'fontWeight': '100' }}>RS : {shoes.price}</div>
-                <div className="btn">
 
+                <img src={
+                  Hoverimg[shoes.id] || shoes.image[0]
+                } alt="" className='prod' />
+
+                <div className="prodD">
+                  <p className='productname'>{shoes.name} </p>
+                  <p className='price'>RS:{shoes.price} </p>
                   <button onClick={() => additemtocart(shoes.name, shoes.price, shoes.image, shoes.fav)} className='addtocart'>Add to Bag</button>
                 </div>
+                {/* <div className="lsimg">
+                  <ul style={{'listStyle':'none'}}>
+                    <li onMouseEnter={()=>setHoverimg({...Hoverimg, [shoes.image] : image})}><img src={shoes.image} alt="" className='limg'/></li>
+                    <li onMouseEnter={()=>setHoverimg({...Hoverimg, [shoes.image] : image})}><img src={shoes.image[1]} alt="" className='limg'/></li>
+                    <li onMouseEnter={()=>setHoverimg({...Hoverimg, [shoes.image] : image})}><img src={shoes.image[1]} alt="" className='limg'/></li>
+                    
+                  </ul>
+                </div> */}
+                <div className="lsimg">
+                  <ul style={{ listStyle: 'none' }}>
+                    {shoes.image.map((imgurl, index) => (
+                      <li
+                        key={index}
+                        onMouseEnter={() => setHoverimg({ ...Hoverimg, [shoes.id]: imgurl })}
+                       >
+                        <img src={imgurl} alt={`Thumbnail ${index}`} className="limg" />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
                 <div>
                   {shoes.fav ? "" : <img src={favicon} alt="" className='fav' onClick={() => updatemethod(shoes.id, shoes.name, shoes.price, shoes.image, shoes.fav, shoes.rating)} />}
                   {shoes.fav && <img src={black} alt="" className='fav' onClick={() => updatemethod(shoes.id, shoes.name, shoes.price, shoes.image, shoes.fav, shoes.rating)} />}

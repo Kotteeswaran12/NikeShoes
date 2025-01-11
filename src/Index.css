@@ -100,9 +100,10 @@
 }
 .slide .slideitem:hover{
     filter: grayscale(0);
-    transform: translateY(-40px);
-    box-shadow: 1px 4px 40px ;
-    z-index: 10000;
+    transform: translateY(-20px); /* Moves the box 50px closer */
+  perspective: 500px; /* Enables 3D perspective */
+    box-shadow: 1px 4px 20px ;
+    
   
 }
 .offer{
