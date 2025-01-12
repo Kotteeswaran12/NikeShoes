@@ -5,7 +5,27 @@
   margin: 0;
 }
 
+body{
+  overflow-X: hidden;
+}
+.newlyarrived{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.newlyarrived .arrivedtxt{
+  position: absolute;
+  font-size: 15rem;
+  color: white;
+  border-bottom: 1px solid #ccc;
+  text-shadow: 0 0 0.5px #fff,     /* Inner glow */
+               0 0 1px white, /* Medium glow */
+               0 0 2px white, /* Outer glow */;
+             
+  
 
+}
 
 .container {
   margin-top: 10%;
@@ -16,7 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
+  
 
 }
 
@@ -47,18 +67,19 @@ cursor: pointer;
 .div .prodD {
   cursor: context-menu;
   text-align: center;
-  font-family: "Merienda", serif;
+  font-family: "Poppins", serif;
 }
 .div .prodD .productname {
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-top: 20px;
+  text-transform: capitalize;
 }
 .div .prodD .price{
   font-size: 1.5rem;
-  font-weight: 100;
-  margin-bottom: 10px;
+  font-weight: 300;
+  margin-bottom: 5px;
 }
 .item .fav  {
   transition: all 0.5s ease-in-out ;
@@ -73,6 +94,7 @@ cursor: pointer;
   position: absolute;
   right: -50px;
   bottom:  12%;
+  background-color: white;
   transition: all 0.7s ease-in-out;
 }
 .item .lsimg .limg{
@@ -111,13 +133,14 @@ cursor: pointer;
 
 
 /* Header styles*/
+
 .header {
   width: 100vw;
   height: fit-content;
   position: fixed;
   z-index: 100;
- background: linear-gradient(-20deg,rgb(209, 204, 192), white);
-  color: black;
+ background: linear-gradient(-20deg,rgb(132, 129, 122), white);
+ 
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -164,7 +187,8 @@ cursor: pointer;
 .header ul li:hover:nth-child(2) {
  
 
-  background-color: rgb(177, 174, 167);
+  background-color: white;
+  
 border-radius: 50%;
 
 
@@ -172,7 +196,7 @@ border-radius: 50%;
 .header ul li:hover:nth-child(3) {
  
 
-  background-color: rgb(177, 174, 167);
+  background-color: white;
 border-radius: 50%;
 
 
@@ -203,7 +227,7 @@ border-radius: 50%;
   height: 100vh;
 
   position: relative;
- background: linear-gradient(-20deg,rgb(209, 204, 192), white);
+ background: linear-gradient(-20deg,rgb(132, 129, 122), white);
 
 }
 
@@ -237,7 +261,7 @@ border-radius: 50%;
 .dot {
   width: 500px;
   height: 500px;
- background: linear-gradient(80deg,rgb(209, 204, 192), white);
+ background: linear-gradient(80deg,rgb(132, 129, 122), white);
   box-shadow: 1px 3px 10px black;
   border-radius: 50%;
   position: absolute;
@@ -407,7 +431,8 @@ border-radius: 50%;
 }
 
 .logo {
-  display: flex;
+  display: block;
+
 
 }
 
@@ -430,7 +455,7 @@ border-radius: 50%;
 }
 
 .condition ul li:hover {
-  color: rgb(132, 129, 122);
+  color: whitesmoke;
   transition: color 0.1s ease-in-out;
 }
 
@@ -453,7 +478,7 @@ border-radius: 50%;
 }
 
 .f {
-  background: linear-gradient(-20deg,rgb(209, 204, 192), white);
+  background: linear-gradient(-20deg,rgb(132, 129, 122), white);
 }
 
 .carts {
@@ -464,7 +489,7 @@ border-radius: 50%;
   z-index: 100;
   right: 0;
   top: 00px;
-  background: linear-gradient(-90deg,rgb(209, 204, 192), white); 
+  background: linear-gradient(-90deg,rgb(132, 129, 122), white); 
   padding: 20px;
   box-shadow: 1px 4px 40px black;
   transform: translatex(200%);
@@ -477,7 +502,21 @@ border-radius: 50%;
 .cart .listofcart h1 h2{
   text-align: center;
 }
-
+.abc{
+  display: grid;
+  grid-template-columns: repeat(3 , 1fr);
+}
+.abc .socialmedia{
+  width: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.abc .socialmedia:nth-child(2){
+  width: 30px;
+}
+.abc .socialmedia:nth-child(3){
+  width: 30px;
+}
 
 
 /*Span tags  in header*/

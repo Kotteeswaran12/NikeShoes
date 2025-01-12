@@ -6,7 +6,7 @@ import axios from "axios"
 import { use } from "react"
 import fav from '../src/assets/favorite_border_16dp_000000.png'
  import iconfav from '../src/assets/favorite_24dp_000000.png'
-
+ import blackfriday from '../src/assets/balckfriday.jpeg'
 const AutoSlide = ({ shoes , cartItem ,additemtocart , updatemethod}) => {
     const [offershoes ,setOffershoes]=useState([])
     const [favls,setFavls]=useState(true)
@@ -42,7 +42,13 @@ const AutoSlide = ({ shoes , cartItem ,additemtocart , updatemethod}) => {
     return (
        <>
        <div className="offertext">
+      
+        <div className="newlyarrived">
+        <img  src={blackfriday} alt="" />
+        <img   src={blackfriday} alt="" />
+        <img  src={blackfriday} alt="" />
         <h1 className="text">Black Friday Sale Upto <span className="offer">50%OFF</span></h1>
+        </div>
        </div>
         <div className="slide" style={{
             '--width': '90vw',
@@ -56,15 +62,24 @@ const AutoSlide = ({ shoes , cartItem ,additemtocart , updatemethod}) => {
                         <div className="slideitem" key={shoes.id} style={{
                             '--position': shoes.id
                         }}  >
-                           {
+                           {/* */}
+                            <div className="auotimg" style={{
+                              "width":"300px" , "height":"300px"   , 'marginBottom':'5%'
+                            }}>
+                            <img src={shoes.img} alt="" onClick={() => additemtocart(shoes.name, shoes.price, shoes.img ,shoes.fav)} />
+                            </div>
+                            
+                            <div className="autofot" style={{'display':'flex'}}>
+                            <h1 className="slidename">{shoes.name}</h1> 
+                            {
                             shoes.fav?  "" : <img src={fav} alt="fav"style={{'width':'40px', 'height':'40px', 'position':'absolute', 'right':'10%' , 'zIndex':'1000'}} onClick={()=>{ setFavls(true);
                               autofav(shoes.id ,shoes.name , shoes.price , shoes.img , shoes.fav , shoes.rating )}}/>
                            }{
                             shoes.fav &&  <img src={iconfav} alt=""style={{'width':'40px', 'height':'40px', 'position':'absolute', 'right':'10%'}} onClick={()=>{ setFavls(false);
                               autofav(shoes.id ,shoes.name , shoes.price , shoes.img , shoes.fav , shoes.rating )}}/> 
                            }
-                            <img src={shoes.img} alt="" onClick={() => additemtocart(shoes.name, shoes.price, shoes.img ,shoes.fav)} />
-                            <h1 className="slidename">{shoes.name}</h1>
+                            </div>
+                            
 
                         </div>
                     ))

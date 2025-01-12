@@ -15,6 +15,9 @@ import AutoSlide from '../component/AutoSlide'
 import bdname from './assets/name-nike-removebg-preview.png'
 import Cart from '../component/Cart'
 
+import banner2 from './assets/banner2.webp'
+import banner3 from './assets/banner3.webp'
+import banner4 from './assets/banner4.webp'
 
 
 function App() {
@@ -26,7 +29,7 @@ function App() {
 
   const [viewCart, setViewCart] = useState(false)
 
-  const [Shoesimg, setShoesimg] = useState([])
+  
 
   useEffect(() => {
     const fetchshoe = async () => {
@@ -160,7 +163,7 @@ function App() {
           <div className="dot"></div>
           {
             bannerimg && (
-              <img src={bannerimg.image} alt="" key={bannerimg.id} />
+              <img src="https://i.ibb.co/b5Y5pXS/nike-sb-dunk-removebg-preview.png" alt="" key={bannerimg.id} />
 
             )
           }
@@ -172,8 +175,11 @@ function App() {
       <AutoSlide shoes={shoes} cartItem={cartItem} additemtocart={additemtocart} updatemethod={updatemethod} />
 
 
-      <div className="offertext" >
-        <h1 className="text" id='products'>Newly Arrieved </h1>
+      <div className="newlyarrived" >
+        <h1 className="arrivedtxt" id='products'>Newly Arrieved </h1>
+        <img src={banner2} alt="" />
+        <img src={banner3} alt="" />
+        <img src={banner4} alt="" />
       </div>
 
       <div className={`container `}>
@@ -188,8 +194,10 @@ function App() {
                 } alt="" className='prod' />
 
                 <div className="prodD">
+
                   <p className='productname'>{shoes.name} </p>
                   <p className='price'>RS:{shoes.price} </p>
+                  <p style={{'marginBottom':'5px'}}>{shoes.image.length} colours</p>
                   <button onClick={() => additemtocart(shoes.name, shoes.price, shoes.image, shoes.fav)} className='addtocart'>Add to Bag</button>
                 </div>
                 {/* <div className="lsimg">
@@ -229,11 +237,11 @@ function App() {
         <div className="footer">
           <div className="logos">
             <h3> Nike</h3>
-            <div className="logo">
+            <div className="abc" >
 
-              <img src={facebook} alt="" />
-              <img src={insta} alt="" />
-              <img src={twite} alt="" />
+              <img src={facebook} alt=""className='socialmedia' />
+              <img src={insta} alt="" className='socialmedia' />
+              <img src={twite} alt="" className='socialmedia' />
             </div>
 
           </div>

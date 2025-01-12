@@ -2,20 +2,35 @@
 
 
 .offertext{
-  width: 100%;
-    padding: auto;
-    margin-top: 20px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-    background: linear-gradient(20deg,rgb(209, 204, 192),white);
-    cursor: context-menu;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
 }
-.offertext .text{
-    
-    font-family: "Merienda", serif;
+ .text{
+    font-weight: 200;
+    font-family: "Poppins", serif;
+    position: absolute;
+    color: white; /* Pure white text */
+    text-shadow: 0 0 5px white,    /* Inner glow */
+                 0 0 10px white,   /* Medium glow */
+                 0 0 1px white,   /* Outer glow */
+                 0 0 1px white,   /* Stronger outer glow */
+                 0 0 1px white, 
+                 0 0 1px white, 
+                 0 0 5px white;   /* Extended glow */
+   font-size: 6rem;
+   letter-spacing: 1rem;
+   background-color: black;
+   padding: 10px;
+   width: 93%;
    
 }
+.offertext .offerbanner{
+    position: relative;
+  
+}
+
 
 
 
@@ -65,17 +80,23 @@
     transition:0.5s ease-in-out;
     /* background-color: red; */
     padding: 20px;
-    border: 1px solid #ccc;
+    color: black;
    
     border-radius: 20px;
-    background: linear-gradient(-10deg,rgb(209, 204, 192), white); 
+    /* background: linear-gradient(-10deg,rgb(132, 129, 122), white);  */
     text-align: center;
-    font-family: "Merienda", serif;
+    font-family: "Poppins", serif;
+  
     
 }
+.auotimg{
+    background: linear-gradient(-220deg,rgb(132, 129, 122), white);
+}
 .slidename{
-    font-weight: 900;
+    font-weight: 200;
+    text-shadow: 1rem black;
     letter-spacing: 4px;
+    text-transform: capitalize;
 }
 
 @keyframes autoscroll {
@@ -102,7 +123,7 @@
     filter: grayscale(0);
     transform: translateY(-20px); /* Moves the box 50px closer */
   perspective: 500px; /* Enables 3D perspective */
-    box-shadow: 1px 4px 20px ;
+    /* box-shadow: 1px 4px 20px black; */
     
   
 }
@@ -112,15 +133,14 @@
     bottom: 95%;
     left: 0%;
     rotate: -25deg;
-    font-size: 30px;
+    font-size: 2rem;
 
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
     padding: 5px;
     z-index: 100;
     margin-left: 20px;
-    /* border-bottom: 4px solid red;
-    border-top: 4px solid red; */
+   
     padding-left: 20px;
     padding-right: 20px;
     cursor: context-menu;
@@ -140,7 +160,7 @@
     gap: 15px;
     width: 300px;
     flex-direction: column;
-    background: linear-gradient(20deg,rgb(209, 204, 192),white);
+    background: linear-gradient(20deg,rgb(132, 129, 122),white);
     padding: 20px;
 }
 .slide .slideitem:hover .autoscrollDetails{
