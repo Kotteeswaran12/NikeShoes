@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import './App.css'
 
@@ -18,42 +19,33 @@ import Cart from '../component/Cart'
 import banner2 from './assets/banner2.webp'
 import banner3 from './assets/banner3.webp'
 import banner4 from './assets/banner4.webp'
+import Login from '../component/Login'
 
 
 function App() {
   const [shoes, setShoes] = useState([])
-  const [bannerimg, setBannerimg] = useState(null)
-
+  const [cartSatus , setCartSatus]=useState(false)
   const [Hoverimg, setHoverimg] = useState({})
   const [cartItem, setCartItem] = useState([])
-
-  const [viewCart, setViewCart] = useState(false)
-
-  
-
+  const [loginSatus, setLoginSatus] = useState()
+  const [viewCart, setViewCart] = useState(false);
+  const [login , setLogin]=useState(false);
+  const [searchView , setSearchView] = useState(false)
+ 
+const [searchList , setSearchList]=useState([])
+  const handleFocus=() => setSearchView(true);
+  const handleBlur =()=> setSearchView(false)
   useEffect(() => {
     const fetchshoe = async () => {
       try {
         let link = await axios.get("http://localhost:8080/products");
 
         setShoes(link.data);
-        // confirm.log(link.data.image)
-        // console.log(link.data)
+      
       }
       catch (error) {
         console.log("unable to fetchShoes data" + error)
       }
-
-    }
-    const thumblineImg = async () => {
-      try {
-        let url = await axios.get(`http://localhost:8080/products/14 `);
-        setBannerimg(url.data);
-      }
-      catch (error) {
-        console.log("Unable to fetch Banner url " + error)
-      }
-
 
     }
     const cartlist = async () => {
@@ -71,18 +63,8 @@ function App() {
 
     cartlist()
     fetchshoe();
-    thumblineImg();
+   
   }, [cartItem])
-
-  useEffect(() => {
-    if (bannerimg) {
-      console.log("banner img update successfully", bannerimg.image)
-    } else {
-      console.log("unamble to update banner img")
-    }
-
-  }, [])
-
   const additemtocart = async (name, price, img) => {
 
 
@@ -128,6 +110,14 @@ function App() {
 
   }
 
+const handleChange=async(event)=>{
+ 
+  if(event.key == 'Enter'){
+    const slist=await axios.get(`http://localhost:8080/products/search?keyword=${event.target.value}`);
+setSearchList(slist.data);
+  }
+ 
+}
 
   return (
     <>
@@ -136,21 +126,39 @@ function App() {
         <img src={bdname} alt="" className='logo' />
 
         <ul>
+        
+          <li >
+          <img src={searchicon} alt="" className='searchIcon'  />
+            <input type="text" className='search' placeholder='Search' onFocus={handleFocus} onBlur={handleBlur} onKeyDown={handleChange} onChange={ handleChange} ></input>
+          </li>
 
-          <li ><img src={searchicon} alt="" style={{
-            'width': '35px', 'background-color': 'rgb(209, 204, 192)', 'padding': '3px', 'borderRadius': '50%', 'position': 'absolute'
-          }} /><input type="text" className='search' placeholder='               Search' ></input></li>
-
-          <li onClick={() => setViewCart(true)}><img src={cartimg} /> {cartItem.length === 0 ? "" : <span className='cartList'>{cartItem.length}</span>}</li>
-          <li><img src={favicon} alt="" className='fav' /></li>
+          <li onClick={() =>{ setViewCart(true); setCartSatus(true)}}><img src={cartimg} /> {cartItem.length === 0 ? "" : <span className='cartList'>{cartItem.length}</span>}</li>
+          <li onClick={()=>login? setLogin(false): setLogin(true)}> <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="black">
+    <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+  </svg></li>
 
         </ul>
       </div>
+     { searchView &&  <div className="SearchMain">
+      <div className={`SearchList ${searchView? "": 'no'}`}>
+        { searchList.length === 0 ?<h1 className='noItem'>No Item Found</h1>: ""}
+        {
+          searchList.map((search)=>(
+             <div className="searchItem" key={search.id}>
+          <img src={search.image} alt="palceHolder" className='searchimg'/>
+          <h1>{search.name}</h1>
+          <h4>RS :{search.price}</h4>
+        </div>
+          ))
+        }
+       
+      </div>
+      </div>}
 
 
-      {viewCart && <Cart cartItem={cartItem} viewCart={viewCart} setViewCart={setViewCart} />}
+      {viewCart && <Cart cartItem={cartItem} viewCart={viewCart} setViewCart={setViewCart} setLogin={setLogin} cartSatus={cartSatus} setCartSatus={setCartSatus} setLoginSatus={setLoginSatus} loginSatus={loginSatus}/>}
       <div className="banner">
-        <div className="details">
+        <div className={`details${login? "-login" : ''}`}>
           <h4>Mens Fashion </h4>
           <h1>Branded Shoes</h1>
           <h3>Make your Move Memorable</h3>
@@ -160,16 +168,22 @@ function App() {
 
 
         <div className="content">
-          <div className="dot"></div>
-          {
+          <div className={`dot${login? '-login':''}`}></div>
+          <img src="https://i.ibb.co/b5Y5pXS/nike-sb-dunk-removebg-preview.png" alt="" className={`Bannerimg${login?"-login":' '}`}/>
+          {/* {
             bannerimg && (
-              <img src="https://i.ibb.co/b5Y5pXS/nike-sb-dunk-removebg-preview.png" alt="" key={bannerimg.id} />
+             
 
             )
-          }
+          } */}
 
 
         </div>
+
+          {
+            login? <Login setLogin={setLogin} setLoginSatus={setLoginSatus} loginSatus={loginSatus}/>: ""
+          }
+
       </div>
 
       <AutoSlide shoes={shoes} cartItem={cartItem} additemtocart={additemtocart} updatemethod={updatemethod} />

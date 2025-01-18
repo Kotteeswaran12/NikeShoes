@@ -8,10 +8,14 @@ import delet from '../src/assets/delete_19dp_000000_FILL0_wght400_GRAD0_opsz20.p
 import fav from '../src/assets/favorite_border_16dp_000000.png'
 import add from '../src/assets/add_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.png'
 import remove from '../src/assets/remove_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.png'
-const Cart = ({ cartItem, viewCart, setViewCart }) => {
-
+import Payement from './Payement'
+// import {Login} from './Login'
+const Cart = ({ cartItem, viewCart, setViewCart , setLogin , loginSatus , cartSatus , setCartSatus ,setLoginSatus}) => {
+    // const {loginDone}=Login();
     const [cartitem, setCartItem] = useState([])
     const [del, setDel] = useState()
+    const [payementSatus , setPayementStatus] = useState(false)
+    
 
     useEffect(() => {
 
@@ -39,36 +43,36 @@ const Cart = ({ cartItem, viewCart, setViewCart }) => {
         await axios.delete(`http://localhost:8080/cart/${id}`)
 
         setCartItem((cartitem) => cartitem.filter((c) => c.id !== id))
-        // setDel(id)
-        // deleteurl()
+        
 
     }
-    // console.log(del)
+   const cartCheckout=()=>{
+    //  loginSatus? setPayementStatus(true): setLogin(true) ,setViewCart(true); 
+    if(loginSatus){
+        setPayementStatus(true)
+    }else{
+        setLogin(true);
+        setViewCart(false); 
+    }
+    setCartItem([])
+   }
 
     return (
         <>
 
-            {/* <div className="cartcontainer">
-            
-            {
-                cartitem.map((cart)=>(
-                    <div className="cartitem" key={cart.id}  >
-                        <h1 >{cart.name}</h1>
-                        <img src={cart.image} alt={cart.name} />
-                        <h2>{cart.price}</h2>
-                    </div>
-                ))
-            }
-        </div> */}
-            {viewCart && <div className="cartcontainer">
+          
+            {viewCart && <div className={`cartcontainer${cartSatus? 'in' : ''}`}>
                 <div className='Tittle' >
 
                     <div className="close">
-                        <img src={close} alt={close} className='cancle' onClick={() => setViewCart(false)} />
+                        <img src={close} alt={close} className='cancle' onClick={() => { setCartSatus(false)}} />
                     </div>
                     <div className="tittlename">
                         <h1>Cart Items</h1>
                     </div>
+                    {cartItem.length !== 0? <div className="Cartbtn">
+                    <button onClick={()=>{ cartCheckout() }}>Check Out</button>
+                </div>: ''}
                 </div>
 
 
@@ -83,8 +87,10 @@ const Cart = ({ cartItem, viewCart, setViewCart }) => {
                     cartitem.map((cart) => (
                         <div className="cartlist" key={cart.id}>
 
-
+                            <div className="cartlistimg" >
                             <img src={cart.image} alt={cart.name} style={{ 'maxheight': "200px" }} className='cartimg' />
+                            </div>
+                         
                             <div className="name">
                                 <div className="name1" >
 
@@ -101,14 +107,19 @@ const Cart = ({ cartItem, viewCart, setViewCart }) => {
 
                             </div>
                             <h3 className='cartPrice'>MRP : {cart.price}</h3>
+                    
                         </div>
+                        
 
                     ))
+                    
                 }
+                       
+                
 
             </div>}
 
-
+               {payementSatus && <Payement setPayementStatus={setPayementStatus} setCartItem={setCartItem}></Payement>}
 
 
 

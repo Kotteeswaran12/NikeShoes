@@ -12,7 +12,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  cursor: context-menu;
 }
 .newlyarrived .arrivedtxt{
   position: absolute;
@@ -46,7 +46,7 @@ body{
 
 .div {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, auto);
   column-gap: 130px;
   row-gap: 150px;
 }
@@ -100,6 +100,7 @@ cursor: pointer;
 .item .lsimg .limg{
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 .item .prod:hover ~ .lsimg{
   right: 0%;
@@ -137,9 +138,11 @@ cursor: pointer;
 .header {
   width: 100vw;
   height: fit-content;
-  position: fixed;
+  position: fixed   ;
   z-index: 100;
- background: linear-gradient(-20deg,rgb(132, 129, 122), white);
+ background: linear-gradient(-50deg,#F8FAFC,rgb(132, 129, 122), white);
+ /* background-color: #F8FAFC; */
+
  
   padding: 10px 20px;
   display: flex;
@@ -170,6 +173,25 @@ cursor: pointer;
   font-size: 1.2rem;
   padding: 5px;
 
+}
+.header ul li:nth-child(1){
+  background-color: white;
+  height: fit-content;
+  display: grid;
+  grid-template-columns:repeat(2,1fr);
+  border-radius: 15px;
+  min-width: 120px;
+  max-width: fit-content;
+  transition: all 0.5s ease-in-out;
+
+}
+.header ul li .search:focus{
+  width: 400px;
+  transition: all 0.5s ease-in-out;
+}
+.header ul li:nth-child(1) .searchIcon{
+  width: 40px;
+  
 }
 
 .header ul li:nth-child(2) img {
@@ -202,9 +224,9 @@ border-radius: 50%;
 
 }
 .header ul li .search{
-  width: 190px;
+  width: 50px;
   height: 25px;
- 
+ transition: all 0.5s ease-in-out;
  border-top-left-radius: 20px;
  border-bottom-left-radius: 20px;
  border-top-right-radius: 20px;
@@ -212,14 +234,79 @@ border-radius: 50%;
   border: none;
   outline: none;
   padding: 8px;
-  color:  rgb(132, 129, 122);
+  color:  black(132, 129, 122);
   font-weight: 700;
   font-family: "Poppins", serif;
+  background-color: transparent;
 }
+.SearchMain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.SearchList{
+  padding: 1rem;
+  min-width: 45%;
+  min-height: 80vh;
+  max-height: 70%;
+  background: linear-gradient(-20deg,rgb(132, 129, 122), white);
+  position: fixed;
+  z-index: 1000;
+  top: -32%;
+  right: 9%; 
+  transition: all 0.5s ease-in-out;
+  border-radius: 15px ;
+  animation: searchView 0.5s ease-in-out 1 forwards;
+  box-shadow: 2px 3px 80px ;
+  overflow: scroll;
+  
+  overflow-x: hidden;
+  font-family: "Poppins", serif;
 
+}
+@keyframes searchView{
 
-
-
+  to{
+    top: 13%;
+    opacity: 1;
+  }
+  
+}
+.SearchList.no{
+  animation: searchViewout 0.5s ease-in-out 1 forwards;
+}
+@keyframes searchViewout {
+  to{
+    top: -32%; 
+  }
+  
+}
+.SearchList .noItem{
+  letter-spacing: 1rem;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.searchItem{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px;
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  cursor: context-menu;
+  
+}
+.searchItem .searchimg{
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
 
 /*Banner Styles*/
 .banner {
@@ -237,7 +324,7 @@ border-radius: 50%;
 
 
 
-.content img {
+.content .Bannerimg {
   position: absolute;
   width: 40%;
   right: 10%;
@@ -246,9 +333,9 @@ border-radius: 50%;
   transform: translateX(0px);
   transition: transform 0.5s ease-in-out;
   animation: banner 0.5s ease-in-out 1 forwards;
-  animation: name timing-function delay iteration-count direction fill-mode;
 
 }
+
 
 @keyframes banner {
   from {
@@ -293,7 +380,11 @@ border-radius: 50%;
 }
 
 @keyframes blureffect {
+  from{
+    opacity: 0;
+  }
   to {
+    opacity: 1;
     filter: blur(0px);
     transition: blur 0.5s ease-in-out;
   }
@@ -392,7 +483,125 @@ border-radius: 50%;
    
 
 }
+ /* Login form transtion */
+ .content .Bannerimg-login {
+  
+  position: absolute;
+  width: 40%;
+  left: -25%;
+  bottom: 20%;
+  
+  transform: rotate(45deg) scaleX(-1) translateX(850px);
+  
+  
+  /*  */
+  transition: all 0.5s ease-in-out;
+  animation: banner-login 1s ease-in-out 1 forwards;
 
+}
+@keyframes banner-login {
+  from{
+    right: -200%;
+  }
+  100%{
+    left: 5%;
+    transform: rotate(45deg) scaleX(-1) translateX(50px);
+    
+  }
+  
+}
+.dot-login {
+  width: 500px;
+  height: 500px;
+ background: linear-gradient(80deg,rgb(132, 129, 122), white);
+  box-shadow: 1px 3px 10px black;
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  transform: translateY(0px);
+  transition: transform 1s ease-in-out;
+  animation: rollroll 1s linear 1 forwards;
+}
+
+@keyframes rollroll {
+    from {
+     
+    right: -200%;
+      opacity: 0;
+      filter: blur(20px);
+    }
+    to {
+      left: 8%;
+
+      opacity: 1;
+      filter: blur(0);
+     ; 
+    }
+ 
+}
+.details-login {
+  width: 650px;
+  position: absolute;
+
+  bottom: 30%;
+  left: 20%;
+  transform: translateX(-20%);
+transition: all 0.5s ease-in-out;
+  font-family: "Poppins", serif;
+  filter: blur(10px);
+  animation: blureffect-Login 0.5s ease-in-out 1 forwards;
+}
+@keyframes blureffect-Login  {
+  to {
+    left: -210%;
+    filter: blur(0px);
+    transition: blur 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+}
+
+.details-login h4 {
+  font-size: 30px;
+  font-weight: 200;
+  margin-bottom: 5px;
+  width: 200px;
+  filter: blur(10px);
+  animation-delay: 0.7s;
+  color: black;
+}
+
+.details-login h1 {
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 600;
+  color: white;
+  background-color: black;
+  margin-bottom: 4px;
+  animation-delay: 0.8s;
+  filter: blur(10px);
+}
+
+.details-login h3 {
+  font-size: 40px;
+  font-weight: 200;
+  margin-bottom: 10px;
+  animation-delay: 1s;
+  filter: blur(10px);
+  color: black;
+  margin-right: 15%;
+}
+
+.details-login p {
+  font-size: 20px;
+  animation-delay: 1.5s;
+  filter: blur(10px);
+  color: black;
+}
 
 
 
@@ -528,6 +737,7 @@ border-radius: 50%;
   right: 8.8%;
   border-radius: 50%;
   top: 40%;
-  width: 9px;
+  min-width: 10px;
+  max-width: fit-content;
   
 } 
